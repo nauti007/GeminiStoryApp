@@ -3,11 +3,6 @@ from PyQt6.QtWidgets import (QApplication, QWidget, QVBoxLayout,
                              QTextEdit, QPushButton, QLabel)
 from google import genai
 from google.genai import types
-
-# --- 1. SECURE KEY LOADING ---
-# For GitHub, we look in the local folder. 
-# On your PC, keep your sys.path trick to reach Downloads.
-sys.path.append(r"C:\Users\ADNAUTIY2401\Downloads")
 try:
     import config
     client = genai.Client(api_key=config.api_key)
