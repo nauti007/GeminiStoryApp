@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import (QApplication, QWidget, QVBoxLayout, 
-                             QTextEdit, QPushButton, QLabel)
+                             QTextEdit, QPushButton, QLabel, QFileDialog)
 from google import genai
 from google.genai import types
 try:
@@ -31,6 +31,11 @@ class GeminiStoryApp(QWidget):
         self.btn.clicked.connect(self.run_generation)
         layout.addWidget(self.btn)
         
+        # NEW: Save Button
+        self.save_btn = QPushButton("Save Story to File")
+        self.save_btn.clicked.connect(self.save_to_file)
+        layout.addWidget(self.save_btn)
+
         self.output_box = QTextEdit()
         self.output_box.setReadOnly(True)
         layout.addWidget(self.output_box)
@@ -68,6 +73,18 @@ class GeminiStoryApp(QWidget):
             return response.text.strip() if response.text else "[Empty Response]"
         except Exception as e:
             return f"[API Error: {str(e)}]"
+        
+    def save_to_file(self):
+        story_text = self.output_box.toPlainText()
+        if not story_text:
+            return
+        
+        # This opens the standard Windows Save dialog
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Story", "", "Text Files (*.txt);;All Files (*)")
+    
+        if file_path:
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(story_text)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
