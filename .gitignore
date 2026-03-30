@@ -1,0 +1,7 @@
+# Don't upload the secret key
+config.py
+
+# Don't upload temporary Python files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
