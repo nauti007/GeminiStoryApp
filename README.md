@@ -1,4 +1,7 @@
 # 🤖 Unit Story Generator
+<img width="592" height="528" alt="image" src="https://github.com/user-attachments/assets/e83d4f79-4d69-4bcb-91cc-4986f46e43c2" />
+
+
 An AI-powered desktop application built with **Python**, **PyQt6**, and **Google Gemini 2.5 Flash**.
 
 ## ✨ Features
